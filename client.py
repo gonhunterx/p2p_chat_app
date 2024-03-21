@@ -8,13 +8,19 @@ def start_client(host, port):
     print("Connected to server.")
 
     while True:
+        # allow the user to enter a message 
         message = input("Enter your message: ")
+        # send the encoded message to the server through the client's socket 
         client_socket.send(message.encode())
+        # create a way for the user to easily exit the program 
         if message.lower() == "bye":
             break
+        # get the response from the server 
         response = client_socket.recv(1024)
+        # print response from server 
         print("Server:", response.decode())
 
+    # close the client socket 
     client_socket.close()
 
 if __name__ == "__main__":
